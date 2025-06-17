@@ -1,7 +1,12 @@
 package lk.ijse.paymentservice.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -14,10 +19,15 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Long userId;
     private Long bookingId;
-    private Double amount;
-    private String paymentMethod;
-    private String paymentStatus;
 
-    private LocalDateTime timestamp = LocalDateTime.now();
+    private String cardNumber;
+    private String cardHolder;
+    private String expiryDate;
+    private String cvv;
+
+    private Double amount;
+    private String status;
+    private LocalDateTime paymentTime;
 }

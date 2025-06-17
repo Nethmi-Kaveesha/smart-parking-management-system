@@ -36,6 +36,20 @@ public class UserController {
         }
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
+        User user = userService.update(id, updatedUser);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        }
+        return ResponseEntity.notFound().build();
+    }
+//    @GetMapping("/{id}/bookings")
+//    public ResponseEntity<List<Booking>> getUserBookings(@PathVariable Long id) {
+//        List<Booking> bookings = userService.getBookingHistory(id);
+//        return ResponseEntity.ok(bookings);
+//    }
+
 
     @GetMapping("/getAll")
     public ResponseEntity<List<User>> getAll() {

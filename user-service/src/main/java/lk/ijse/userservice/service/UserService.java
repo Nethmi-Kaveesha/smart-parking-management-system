@@ -34,6 +34,7 @@ public class UserService {
         }
     }
 
+
     public List<User> findAll() {
         return userRepository.findAll();
     }
@@ -44,5 +45,25 @@ public class UserService {
 
     public void delete(Long id) {
         userRepository.deleteById(id);
+    }
+
+    public User update(Long id, User updatedUser) {
+        return userRepository.findById(id).map(existingUser -> {
+            if (updatedUser.getUsername() != null && !updatedUser.getUsername().isEmpty()) {
+                existingUser.setUsername(updatedUser.getUsername());
+            }
+            if (updatedUser.getEmail() != null && !updatedUser.getEmail().isEmpty()) {
+                existingUser.setEmail(updatedUser.getEmail());
+            }
+            if (updatedUser.getRole() != null && !updatedUser.getRole().isEmpty()) {
+                existingUser.setRole(updatedUser.getRole());
+            }
+            if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
+                existingUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
+            }
+            // Add more fields to update if needed
+
+            return userRepository.save(existingUser);
+        }).orElseThrow(() -> new RuntimeException("User not found"));
     }
 }

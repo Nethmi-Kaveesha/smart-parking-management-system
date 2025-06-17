@@ -43,4 +43,19 @@ public class VehicleService {
     public void delete(Long id) {
         repository.deleteById(id);
     }
+
+    public Vehicle simulateEntry(Long id) {
+        Vehicle vehicle = getById(id);
+        // simulate entry logic, e.g., log entry time or flag
+        System.out.println("Vehicle " + vehicle.getLicensePlate() + " entered.");
+        return vehicle;
+    }
+
+    public Vehicle simulateExit(Long id) {
+        Vehicle vehicle = getById(id);
+        // simulate exit logic, e.g., log exit time or flag
+        System.out.println("Vehicle " + vehicle.getLicensePlate() + " exited.");
+        return vehicle;
+    }
+
 }

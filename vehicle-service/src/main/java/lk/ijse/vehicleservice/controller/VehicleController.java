@@ -45,4 +45,17 @@ public class VehicleController {
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
+
+    @PostMapping("/{id}/entry")
+    public Vehicle simulateEntry(@PathVariable Long id) {
+        return service.simulateEntry(id);
+    }
+
+    @PostMapping("/{id}/exit")
+    public Vehicle simulateExit(@PathVariable Long id) {
+        return service.simulateExit(id);
+    }
+
+
+
 }

@@ -18,7 +18,7 @@ public class WebSecurityConfig {
 
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/users/register", "/api/users/login","/api/users/getAll").permitAll()
+                        .requestMatchers("/api/users/register", "/api/users/login","/api/users/getAll","/api/users/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults());  // enable basic auth for others if needed

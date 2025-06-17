@@ -5,12 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class ParkingSpace {
 
     @Id
@@ -23,4 +21,7 @@ public class ParkingSpace {
     private boolean available = true;
 
     private int slotCount;
+
+    @Column(nullable = false)
+    private String status = "AVAILABLE"; // e.g., AVAILABLE, OCCUPIED, RESERVED, UNAVAILABLE
 }

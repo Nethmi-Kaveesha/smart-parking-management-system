@@ -42,6 +42,28 @@ public class ParkingSpaceController {
         service.deleteSpace(id);
     }
 
+    @PostMapping("/{id}/reserve")
+    public ParkingSpace reserve(@PathVariable Long id) {
+        return service.reserveSpace(id);
+    }
+
+    @PostMapping("/{id}/release")
+    public ParkingSpace release(@PathVariable Long id) {
+        return service.releaseSpace(id);
+    }
+
+    @PutMapping("/{id}/status")
+    public ParkingSpace updateStatus(@PathVariable Long id, @RequestParam String status) {
+        return service.updateStatus(id, status.toUpperCase()); // Status: AVAILABLE, OCCUPIED, RESERVED, etc.
+    }
+
+    @GetMapping("/filter")
+    public List<ParkingSpace> filter(
+            @RequestParam(required = false) String location,
+            @RequestParam(required = false) Boolean available) {
+        return service.filterSpaces(location, available);
+    }
+
     @GetMapping("/search")
     public List<ParkingSpace> searchByLocation(@RequestParam String location) {
         return service.searchByLocation(location);

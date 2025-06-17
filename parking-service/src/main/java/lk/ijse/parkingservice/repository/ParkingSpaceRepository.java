@@ -9,4 +9,6 @@ import java.util.List;
 public interface ParkingSpaceRepository extends JpaRepository<ParkingSpace, Long> {
     List<ParkingSpace> findByLocationContainingIgnoreCase(String location);
     List<ParkingSpace> findByAvailable(boolean available);
+   List<ParkingSpace> findByLocationContainingIgnoreCaseAndAvailable(String location, boolean available);
+
 }

@@ -1,6 +1,6 @@
 package lk.ijse.userservice.controller;
 
-import lk.ijse.userservice.dto.LoginRequest;
+import lk.ijse.userservice.entity.Booking;
 import lk.ijse.userservice.entity.User;
 import lk.ijse.userservice.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -44,11 +44,22 @@ public class UserController {
         }
         return ResponseEntity.notFound().build();
     }
-//    @GetMapping("/{id}/bookings")
-//    public ResponseEntity<List<Booking>> getUserBookings(@PathVariable Long id) {
-//        List<Booking> bookings = userService.getBookingHistory(id);
-//        return ResponseEntity.ok(bookings);
-//    }
+
+    @GetMapping("/{id}/bookings")
+    public ResponseEntity<List<Booking>> getUserBookings(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.getBookingHistory(id));
+    }
+
+    @PostMapping("/{id}/bookings")
+    public ResponseEntity<Void> addBooking(@PathVariable Long id, @RequestBody Booking booking) {
+        userService.addBooking(id, booking);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @GetMapping("/logs")
+    public ResponseEntity<List<String>> getLogs() {
+        return ResponseEntity.ok(userService.getLogs());
+    }
 
 
     @GetMapping("/getAll")

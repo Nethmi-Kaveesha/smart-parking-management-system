@@ -8,23 +8,20 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.0</version>  <!-- Or the version you want -->
+        <version>3.3.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-
 
     <groupId>lk.ijse</groupId>
     <artifactId>config-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>config-server</name>
-    <description>config-server</description>
+    <description>Spring Cloud Config Server</description>
 
     <properties>
         <java.version>17</java.version>
-        <spring-cloud.version>2023.0.1</spring-cloud.version> <!-- match Spring Boot 3.5.0 -->
+        <spring-cloud.version>2023.0.1</spring-cloud.version>
     </properties>
-
-    <!-- 🔽 ADD THIS SECTION -->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -34,29 +31,20 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
-                <!-- NO <version> here -->
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
-        <!-- Web for REST endpoint -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Config Server -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-server</artifactId>
         </dependency>
 
-        <!-- Eureka Client (optional, only if registering with Eureka Server) -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>

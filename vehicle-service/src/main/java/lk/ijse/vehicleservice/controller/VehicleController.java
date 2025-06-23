@@ -26,6 +26,7 @@ public class VehicleController {
         return service.getAll();
     }
 
+
     @GetMapping("/{id}")
     public Vehicle getById(@PathVariable Long id) {
         return service.getById(id);
